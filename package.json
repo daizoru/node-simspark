@@ -1,0 +1,25 @@
+{
+  "name": "simspark",
+  "description": "experimental SimSpark client",
+  "version": "0.0.0",
+  "author": "Julian Bilcke <julian.bilcke@daizoru.com>",
+  "scripts"     : {
+    "build"     : "node_modules/coffee-script/bin/coffee --compile --output lib/ src/",
+    "watch"     : "node_modules/coffee-script/bin/coffee --watch --compile --output lib/ src/"
+  },
+  "main" : "./lib/simspark",
+  "repository": "http://github.com/daizoru/node-simspark.git",
+  "keywords": [
+    "simulation",
+    "simulator",
+    "simspark",
+    "robotics",
+    "robots"
+  ],
+  "license": "BSD",
+  "dependencies": {
+  },
+  "devDependencies": {
+     "coffee-script" : "*"
+  }
+}
