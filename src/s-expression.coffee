@@ -4,8 +4,8 @@ isArray     = (obj) -> Array.isArray obj
 isString    = (obj) -> !!(obj is '' or (obj and obj.charCodeAt and obj.substr))
 
 readString = (p) ->
-  p.replace(/\(/g, '[').replace(/\)/g, ']').replace(/\s+/g, ',').replace(new RegExp("([a-zA-Z]+)","gi"), "\"$1\"")
-
+  p.replace(/\s+/g, ', ').replace(/\)\(/g, '), (').replace(/\(/g, '[').replace(/\)/g, ']').replace(new RegExp("([a-zA-Z][a-zA-Z0-9]*)","gi"), "\"$1\"")
+  
 module.exports = S = (p) ->
   if isString p
     eval readString p
