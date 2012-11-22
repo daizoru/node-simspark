@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Node-simspark by daizoru</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Node-simspark</h1>
+        <p>simple SimSpark stream client</p>
+        <p class="view"><a href="https://github.com/daizoru/node-simspark">View the Project on GitHub <small>daizoru/node-simspark</small></a></p>
+        <ul>
+          <li><a href="https://github.com/daizoru/node-simspark/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/daizoru/node-simspark/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/daizoru/node-simspark">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>node-simspark</h1>
+
+<p>simple SimSpark stream client</p>
+
+<h2>Installation</h2>
+
+<pre><code>$ npm install simspark
+</code></pre>
+
+<h2>Usage</h2>
+
+<p>basic send/receive usage:</p>
+
+<div class="highlight"><pre><span class="nv">SimSpark = </span><span class="nx">require</span> <span class="s">'simspark'</span>
+
+<span class="nv">sim = </span><span class="k">new</span> <span class="nx">SimSpark</span> <span class="s">"localhost"</span>
+
+<span class="nx">sim</span><span class="p">.</span><span class="kc">on</span> <span class="s">'connect'</span><span class="p">,</span> <span class="o">-&gt;</span>
+
+  <span class="nx">sim</span><span class="p">.</span><span class="nx">send</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s">"scene"</span><span class="p">,</span> <span class="s">"rsg/agent/nao/nao.rsg"</span><span class="p">]</span>
+    <span class="p">[</span><span class="s">"init"</span><span class="p">,</span> <span class="p">[</span><span class="s">"unum"</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s">"teamname"</span><span class="p">,</span> <span class="s">"BIG"</span><span class="p">]]</span>
+  <span class="p">]</span>
+
+<span class="nx">sim</span><span class="p">.</span><span class="kc">on</span> <span class="s">'data'</span><span class="p">,</span> <span class="nf">(msg) -&gt;</span>
+
+  <span class="nv">t_delta = </span><span class="nx">msg</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">"server time: "</span> <span class="o">+</span> <span class="nx">t_delta</span>
+
+<span class="nx">sim</span><span class="p">.</span><span class="kc">on</span> <span class="s">'end'</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">"disconnected"</span>
+</pre></div>
+
+<h2>Changelog</h2>
+
+<h4>0.0.0</h4>
+
+<ul>
+<li>initial version</li>
+<li>basic streaming API</li>
+</ul>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/daizoru">daizoru</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
