@@ -45,14 +45,14 @@ class SimSpark extends Stream
     @client.on 'end', => @emit 'end'
 
   send: (messages=[]) ->
-    console.log "sending messages"
+    #console.log "sending messages"
     for msg in messages
       #console.log "command: #{pretty command}"
       msgString = sexp msg
       msgPacket = new Buffer 4 + msgString.length
       msgPacket.writeInt32BE msgString.length, 0
       msgPacket.write        msgString,        4, 'ascii'
-      console.log "msgPacket: \"#{msgPacket}\""
+      #console.log "msgPacket: \"#{msgPacket}\""
       #console.log "msgPacket len: #{msgPacket.length}"
       @client.write msgPacket
 

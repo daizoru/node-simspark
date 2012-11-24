@@ -33,6 +33,10 @@ sim.on 'end', -> console.log "disconnected"
 
 ## Changelog
 
+#### 0.0.2
+
+ * removed console.logs
+
 #### 0.0.1
 
  * removed auto-initalization of code
