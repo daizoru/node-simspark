@@ -17,6 +17,11 @@ class SimSpark extends Stream
   constructor: (host,port=3100) ->
     super @
     @client = net.connect port, host
+
+    @client.on 'error',   (er) => @emit 'error', er
+    @client.on 'connect', (er) => @emit "connect", ->
+    @client.on 'close',        => @emit 'close'
+
     @reader = buffy.createReader()
     @client.pipe @reader
 
@@ -35,14 +40,17 @@ class SimSpark extends Stream
           #console.log "eating data"
           rawMsg = @reader.ascii length
           #console.log "rawMsg: #{rawMsg}"
-          message = sexp "(#{rawMsg})"
+          message = []
+          try
+            message = sexp "(#{rawMsg})"
+          catch er
+            console.log "couldn't parse: " + pretty er
+            console.log "original: " + pretty "(#{rawMsg})" 
           length = headerLen
           @emit 'data', message
         #else
         #  console.log "need to bufferize"
 
-    @client.on 'connect', => @emit "connect", ->
-    @client.on 'end', => @emit 'end'
 
   send: (messages=[]) ->
     #console.log "sending messages"
@@ -55,5 +63,11 @@ class SimSpark extends Stream
       #console.log "msgPacket: \"#{msgPacket}\""
       #console.log "msgPacket len: #{msgPacket.length}"
       @client.write msgPacket
+
+  close: ->
+    try
+      @client?.destroy?()
+    catch er
+      console.log "notice: couldn't destroy the socket"
 
 module.exports = SimSpark
