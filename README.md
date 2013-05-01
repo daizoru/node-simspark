@@ -15,13 +15,10 @@ var SimSpark = require('simspark')
 var sim = new SimSpark()
 // by default, this is equivalent to:  new SimSpark("localhost", 3100)
 
-// this SimsSpark client is an instance of Stream. It emits events from the game.
-// (for now it is very crude, not all features are supported)
-
 // event fired once we are connected to the server and can send/receive msg
 sim.on('connect', function() {
 
-  // send a message to the simulator. The messagemust be in SimSpark's s-expression format:
+  // send a message to the simulator. The message must be in SimSpark's s-expression format:
   // http://simspark.sourceforge.net/wiki/index.php/Network_Protocol
   sim.send([
 
@@ -88,6 +85,7 @@ sim.on('close', function () {
 sim.on('error', function (err) {
 
 })
+```
 
 ## TODO
 
