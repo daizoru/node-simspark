@@ -14,7 +14,7 @@ isString    = (obj) -> !!(obj is '' or (obj and obj.charCodeAt and obj.substr))
 
 class SimSpark extends Stream
 
-  constructor: (host,port=3100) ->
+  constructor: (host="localhost",port=3100) ->
     super @
     @client = net.connect port, host
 
@@ -47,7 +47,9 @@ class SimSpark extends Stream
             console.log "couldn't parse: " + pretty er
             console.log "original: " + pretty "(#{rawMsg})" 
           length = headerLen
-          @emit 'data', message
+
+        for evt in message
+          @emit evt[0].toLowerCase(), evt[1..]
         #else
         #  console.log "need to bufferize"
 
