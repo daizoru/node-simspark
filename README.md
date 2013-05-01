@@ -94,6 +94,10 @@ sim.on('error', function (err) {
 
 ## Changelog
 
+#### 0.0.5
+
+ * Fixed the examples
+ 
 #### 0.0.4
 
  * Events are now emitted directly
