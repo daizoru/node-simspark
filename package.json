@@ -21,6 +21,6 @@
     "buffy" : "0.0.5"
   },
   "devDependencies": {
-     "coffee-script" : "*"
+     "coffee-script" : "1.6.x"
   }
 }

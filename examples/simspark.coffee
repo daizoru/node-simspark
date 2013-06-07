@@ -1,6 +1,6 @@
-SimSpark = require 'simspark'
+simspark = require 'simspark'
 
-sim = new SimSpark()
+sim = new simspark.Agent()
 
 sim.on 'connect', ->
   console.log "connected! sending messages.."

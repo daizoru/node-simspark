@@ -1,6 +1,8 @@
-var SimSpark = require 'simspark'
+var simspark = require('simspark')
 
-var sim = new SimSpark().on('connect', function(){
+var sim = new simspark.Agent()
+
+sim.on('connect', function(){
 
   console.log("connected! sending messages..")
 

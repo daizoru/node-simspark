@@ -4,7 +4,7 @@ isArray     = (obj) -> Array.isArray obj
 isString    = (obj) -> !!(obj is '' or (obj and obj.charCodeAt and obj.substr))
 
 readString = (p) ->
-  p.replace(/\s+/g, ', ').replace(/\)\(/g, '), (').replace(/\(/g, '[').replace(/\)/g, ']').replace(new RegExp("([a-zA-Z_][a-zA-Z0-9_]*)","gi"), "\"$1\"")
+  p.replace(/\s+/g, ', ').replace(/\)\(/g, '), (').replace(/\(/g, '[').replace(/\)/g, ']').replace(new RegExp("([a-zA-Z0-9._\/\-]+)","gi"), "\"$1\"")
   
 module.exports = S = (p) ->
   if isString p
