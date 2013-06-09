@@ -48,7 +48,7 @@ class exports.Agent extends Stream
             console.log "original: " + pretty "(#{rawMsg})" 
           length = headerLen
         for evt in message
-          console.log "@emit \""+"#{evt[0]}".toLowerCase()+"\": #{pretty evt[1..]}"
+          #console.log "@emit \""+"#{evt[0]}".toLowerCase()+"\": #{pretty evt[1..]}"
           @emit evt[0].toLowerCase(), evt[1..]
         #else
         #  console.log "need to bufferize"
