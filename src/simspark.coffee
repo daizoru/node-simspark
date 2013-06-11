@@ -93,8 +93,8 @@ exports.startServer = startServer = (onReady) ->
       isReady = yes
       onReady server
 
-  server.stderr.on 'data', (data)  ->  #log "rcssserver3d: error: #{data}"
-  server.on 'close', (code, signal) -> log "rcssserver3D: exited"
+  server.stderr.on 'data', (data)  ->  #console.log "rcssserver3d: error: #{data}"
+  server.on 'close', (code, signal) -> console.log "rcssserver3D: exited"
   server.stdin.end()
 
 
@@ -108,8 +108,8 @@ exports.startViewer = startViewer = (onReady) ->
       isReady = yes
       onReady viewer
 
-  viewer.stderr.on 'data', (data)  ->  #log "rcssmonitor3d: error: #{data}"
-  viewer.on 'close', (code, signal) -> log "rcssmonitor3D: exited"
+  viewer.stderr.on 'data', (data)  ->  #console.log "rcssmonitor3d: error: #{data}"
+  viewer.on 'close', (code, signal) -> console.log "rcssmonitor3D: exited"
   viewer.stdin.end()
 
 exports.checkServer = checkServer = (cb) ->
