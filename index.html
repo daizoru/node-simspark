@@ -31,28 +31,31 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>node-simspark</h1>
+        <h1>
+<a name="node-simspark" class="anchor" href="#node-simspark"><span class="octicon octicon-link"></span></a>node-simspark</h1>
 
 <p>Node interface to SimSpark, the simulator used for the RoboCup 3D Soccer Simulation League</p>
 
-<h2>Installation</h2>
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <pre><code>$ npm install simspark
 </code></pre>
 
-<h2>Summary</h2>
+<h2>
+<a name="summary" class="anchor" href="#summary"><span class="octicon octicon-link"></span></a>Summary</h2>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">SimSpark</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'simspark'</span><span class="p">)</span>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">simspark</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'simspark'</span><span class="p">)</span>
 
-<span class="kd">var</span> <span class="nx">sim</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SimSpark</span><span class="p">()</span>
-<span class="c1">// by default, this is equivalent to:  new SimSpark("localhost", 3100)</span>
+<span class="c1">// shortcut for simspark.Client({hostname:"localhost", port:3100})</span>
+<span class="kd">var</span> <span class="nx">agent</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">simspark</span><span class="p">.</span><span class="nx">Agent</span><span class="p">()</span>
 
 <span class="c1">// event fired once we are connected to the server and can send/receive msg</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'connect'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'connect'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
   <span class="c1">// send a message to the simulator. The message must be in SimSpark's s-expression format:</span>
   <span class="c1">// http://simspark.sourceforge.net/wiki/index.php/Network_Protocol</span>
-  <span class="nx">sim</span><span class="p">.</span><span class="nx">send</span><span class="p">([</span>
+  <span class="nx">agent</span><span class="p">.</span><span class="nx">send</span><span class="p">([</span>
 
     <span class="c1">// here we init the scene using the nao agent model</span>
     <span class="p">[</span><span class="s2">"scene"</span><span class="p">,</span> <span class="s2">"rsg/agent/nao/nao.rsg"</span><span class="p">],</span>
@@ -65,18 +68,18 @@
 
 <span class="c1">// event fired when the game state is updated</span>
 <span class="c1">// events keys are lowercased to make it consistent and easier to remember</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'gs'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'gs'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 
 
 <span class="p">})</span>
 
 <span class="c1">// server time</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'time'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'time'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">})</span>
 
 <span class="c1">// agent state</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'agentstate'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'agentstate'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kd">var</span> <span class="nx">temperature</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
   <span class="kd">var</span> <span class="nx">battery</span>     <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
@@ -84,67 +87,104 @@
 <span class="p">})</span>
 
 <span class="c1">// Force-resistance sensor</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'frp'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'frp'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">})</span>
 
 <span class="c1">// Gyroscope sensor</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'gyr'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'gyr'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">})</span>
 
 <span class="c1">// Accelerometer sensor</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'acc'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'acc'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">})</span>       
 
 <span class="c1">// What the robot "see" (not an image, but semantic information)</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'see'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'see'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">})</span>
 
 <span class="c1">// Hinge Joint</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'hj'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'hj'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">})</span>
 
 <span class="c1">// normal close</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="c1">// handle close</span>
 <span class="p">})</span>
 
 <span class="c1">// network error</span>
-<span class="nx">sim</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">})</span>
 </pre></div>
 
-<h2>TODO</h2>
+<h2>
+<a name="helpers" class="anchor" href="#helpers"><span class="octicon octicon-link"></span></a>Helpers</h2>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">simspark</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'simspark'</span><span class="p">)</span>
+
+<span class="c1">// check that a server is running</span>
+<span class="c1">// if not, one will be started</span>
+<span class="nx">simspark</span><span class="p">.</span><span class="nx">checkServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+
+  <span class="c1">// check that a monitor (OpenGL viewer) is running</span>
+  <span class="c1">// if not, one will be started</span>
+  <span class="nx">simspark</span><span class="p">.</span><span class="nx">checkMonitor</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+
+  <span class="p">})</span>
+
+<span class="p">})</span>
+
+</pre></div>
+
+<h2>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>TODO</h2>
 
 <ul>
 <li>Support all the kind of messages</li>
 <li>Add an example of using the Monitor API, see: <a href="http://simspark.sourceforge.net/wiki/index.php/Network_Protocol#Server.2FMonitor_Communication">http://simspark.sourceforge.net/wiki/index.php/Network_Protocol#Server.2FMonitor_Communication</a>
 </li>
-</ul><h2>Changelog</h2>
+</ul><h2>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
 
-<h4>0.0.4</h4>
+<h4>
+<a name="006" class="anchor" href="#006"><span class="octicon octicon-link"></span></a>0.0.6</h4>
+
+<ul>
+<li>Coffee-Script 1.6.x</li>
+<li>Now there are launchers for rcssserver3d and rcssmonitor</li>
+</ul><h4>
+<a name="005" class="anchor" href="#005"><span class="octicon octicon-link"></span></a>0.0.5</h4>
+
+<ul>
+<li>Fixed the examples</li>
+</ul><h4>
+<a name="004" class="anchor" href="#004"><span class="octicon octicon-link"></span></a>0.0.4</h4>
 
 <ul>
 <li>Events are now emitted directly</li>
 <li>Rewrote example to JS to make it "more readable"</li>
-</ul><h4>0.0.3</h4>
+</ul><h4>
+<a name="003" class="anchor" href="#003"><span class="octicon octicon-link"></span></a>0.0.3</h4>
 
 <ul>
 <li>???</li>
-</ul><h4>0.0.2</h4>
+</ul><h4>
+<a name="002" class="anchor" href="#002"><span class="octicon octicon-link"></span></a>0.0.2</h4>
 
 <ul>
 <li>removed console.logs</li>
-</ul><h4>0.0.1</h4>
+</ul><h4>
+<a name="001" class="anchor" href="#001"><span class="octicon octicon-link"></span></a>0.0.1</h4>
 
 <ul>
 <li>removed auto-initalization of code</li>
-</ul><h4>0.0.0</h4>
+</ul><h4>
+<a name="000" class="anchor" href="#000"><span class="octicon octicon-link"></span></a>0.0.0</h4>
 
 <ul>
 <li>initial version</li>
