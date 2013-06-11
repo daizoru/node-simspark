@@ -119,7 +119,7 @@ exports.checkServer = checkServer = (cb) ->
   if instances is 0
     console.log "Server is not running, starting it.."
     startServer (instance) ->
-      log "Server is now started, connecting to it.."
+      console.log "Server is now started, connecting to it.."
       cb()
   else
     console.log "Server is already running, connecting to it.."
@@ -130,7 +130,7 @@ exports.checkViewer = checkViewer = (cb) ->
   psaux = execSync.exec('ps aux | grep rcssmonitor3d | grep -v grep | wc -l; exit 1');
   instances = ((Number) psaux.stdout) 
   if instances is 0
-    log "Viewer is not running, starting it.."
+    console.log "Viewer is not running, starting it.."
     startViewer (instance) ->
       console.log "Viewer is now started, connecting to it.."
       cb()
