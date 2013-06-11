@@ -1,13 +1,13 @@
 {
   "name": "simspark",
   "description": "Node interface to SimSpark, the simulator used for the RoboCup 3D Soccer Simulation League",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Julian Bilcke <julian.bilcke@daizoru.com>",
-  "scripts"     : {
-    "build"     : "node_modules/coffee-script/bin/coffee --compile --output lib/ src/",
-    "watch"     : "node_modules/coffee-script/bin/coffee --watch --compile --output lib/ src/"
+  "scripts": {
+    "build": "node_modules/coffee-script/bin/coffee --compile --output lib/ src/",
+    "watch": "node_modules/coffee-script/bin/coffee --watch --compile --output lib/ src/"
   },
-  "main" : "./lib/simspark",
+  "main": "./lib/simspark",
   "repository": "http://github.com/daizoru/node-simspark.git",
   "keywords": [
     "simulation",
@@ -18,9 +18,10 @@
   ],
   "license": "BSD",
   "dependencies": {
-    "buffy" : "0.0.5"
+    "buffy": "0.0.5",
+    "execSync": "0.0.4"
   },
   "devDependencies": {
-     "coffee-script" : "1.6.x"
+    "coffee-script": "1.6.x"
   }
 }
