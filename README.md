@@ -141,3 +141,7 @@ simspark.checkServer(function(){
 
  * initial version
  * basic streaming API
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/daizoru/node-simspark/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
